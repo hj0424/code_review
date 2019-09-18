@@ -22,6 +22,7 @@
  *
  * @author Pedro Vicente Gómez Sánchez.
  */
+package project4;
 public class ListNode<T> {
 
   private T data;
@@ -47,7 +48,8 @@ public class ListNode<T> {
     this.next = next;
   }
 
-  @Override public boolean equals(Object o) {
+  @Override 
+  public boolean equals(Object o) {
     if (this == o) return true;
     if (!(o instanceof ListNode)) return false;
 
@@ -58,11 +60,13 @@ public class ListNode<T> {
     return true;
   }
 
-  @Override public int hashCode() {
+  @Override
+  public int hashCode() {
     return data.hashCode();
   }
 
-  @Override public String toString() {
-    return "ListNode{" + "data=" + data + ", next=" + next + '}';
+  @Override 
+  public String toString() {
+	return new StringBuilder().append("ListNode{data=").append(data).append(", next=").append(next).append("}").toString();
   }
 }

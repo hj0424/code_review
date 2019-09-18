@@ -18,6 +18,7 @@
  *
  * @author Pedro Vicente Gómez Sánchez.
  */
+package project4;
 public class ReverseLinkedList {
 
   /**
@@ -30,8 +31,7 @@ public class ReverseLinkedList {
 
     ListNode head = null;
     ListNode current = list;
-    while (current != null)
-    {
+    while (current != null) {
       ListNode save = current;
       current = current.getNext();
       save.setNext(head);

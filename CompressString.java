@@ -21,6 +21,8 @@
  *
  * @author Pedro Vicente Gómez Sánchez.
  */
+
+package project2;
 public class CompressString {
 
   /**
@@ -38,18 +40,14 @@ public class CompressString {
     StringBuilder stringBuilder = new StringBuilder();
     int repeatedCharCounter = 1;
     char previousChar = src.charAt(0);
-    for (int i = 1; i < src.length(); i++)
-    {
+    for (int i = 1; i < src.length(); i++) {
       char currentChar = src.charAt(i);
 
-      if (isCharRepeated(previousChar, currentChar))
-      {
+      if (isCharRepeated(previousChar, currentChar)) {
         repeatedCharCounter++;
-      } else
-      {
+      } else {
         addChar(stringBuilder, previousChar);
-        if (repeatedCharCounter > 1)
-        {
+        if (repeatedCharCounter > 1) {
           stringBuilder.append(repeatedCharCounter);
           repeatedCharCounter = 1;
         }
@@ -67,21 +65,19 @@ public class CompressString {
    * First while loop for finding repeat groups, and inner while loop is for finding same characters
    */
   public String compressAlternativeApproach(String src) {
-    if (src.size() == 0 || src.length() == 1)
+    if (src.size() == 0 || src.length() == 1) {
       return src;
+    }
+    
     int index = 0;
     int count = 1;
     StringBuilder stringBuilder = new StringBuilder();
-    while (index < src.length())
-    {
-      while (index < src.length() - 1)
-      {
-        if (src.charAt(index) == src.charAt(index + 1))
-        {
+    while (index < src.length()) {
+      while (index < src.length() - 1) {
+        if (src.charAt(index) == src.charAt(index + 1)) {
           index++;
           count++;
-        } else
-        {
+        } else {
           stringBuilder.append(src.charAt(index));
           if (count > 1)
             stringBuilder.append(count);
@@ -91,16 +87,14 @@ public class CompressString {
           break;
         }
       }
-      if (index == src.length() - 1)
-      {
-        if (src.charAt(index) != src.charAt(index - 1))
-        {
+      if (index == src.length() - 1) {
+        if (src.charAt(index) != src.charAt(index - 1)) {
           stringBuilder.append(src.charAt(index));
-        } else
-        {
+        } else {
           stringBuilder.append(src.charAt(index));
-          if (count > 1)
+          if (count > 1) {
             stringBuilder.append(count);
+          }
         }
         index++;
         break;
@@ -115,8 +109,7 @@ public class CompressString {
 
   private void appendLastCharIfNeeded(StringBuilder stringBuilder, int repeatedCharCounter,
       char previousChar) {
-    if (repeatedCharCounter > 1)
-    {
+    if (repeatedCharCounter > 1) {
       addChar(stringBuilder, previousChar);
       stringBuilder.append(repeatedCharCounter);
     }
@@ -127,10 +120,10 @@ public class CompressString {
    * recursive version is the same than te previous one.
    */
   public String compressRecursive(String src) {
-    boolean thereIsNoMoreWordToCompress = false;
 
-    if (src.length() <= 1)
+    if (src.length() <= 1) {
       return src;
+    }
 
     return compressRecursiveInner(src, new StringBuilder(), 1, src.charAt(0), 1);
   }
@@ -138,18 +131,14 @@ public class CompressString {
   private String compressRecursiveInner(String src, StringBuilder sb, int i, char previousChar,
       int charCounter) {
     boolean thereIsNoMoreWordToCompress = i == src.length();
-    if (thereIsNoMoreWordToCompress == true)
-    {
+    if (thereIsNoMoreWordToCompress == true) {
       addChar(sb, previousChar);
       addCharCounterIfNeeded(sb, charCounter);
       return sb.toString();
-    } else
-    {
-      if (isCharRepeated(src.charAt(i), previousChar))
-      {
+    } else {
+      if (isCharRepeated(src.charAt(i), previousChar)) {
         return compressRecursiveInner(src, sb, i + 1, previousChar, charCounter + 1);
-      } else
-      {
+      } else {
         addChar(sb, previousChar);
         addCharCounterIfNeeded(sb, charCounter);
         return compressRecursiveInner(src, sb, i + 1, src.charAt(i), 1);
@@ -158,8 +147,7 @@ public class CompressString {
   }
 
   private void addCharCounterIfNeeded(StringBuilder sb, int charCounter) {
-    if (charCounter > 1)
-    {
+    if (charCounter > 1) {
       sb.append(charCounter);
     }
   }

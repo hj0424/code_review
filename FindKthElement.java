@@ -18,6 +18,8 @@
  *
  * @author Pedro Vicente Gómez Sánchez.
  */
+
+package project4;
 public class FindKthElement {
 
   private ReverseLinkedList reverseLinkedList;
@@ -32,14 +34,14 @@ public class FindKthElement {
    * Remember that our reverse algorithm also has O(N) as complexity order.
    * In space terms we get O(1) because we are not using any auxiliary data structure.
    */
-  public ListNode Find(ListNode listNode, int k) {
+  public ListNode findByReversedList(ListNode listNode, int k) {
     ListNode reversedList = reverseLinkedList.reverseIterative(listNode);
     ListNode result = reversedList;
-    while (k > 0)
-    {
+    while (k > 0) {
       result = result.getNext();
-      if (result == null)
+      if (result == null) {
         throw new IndexOutOfBoundsException();
+      }
       k--;
     }
     return result;
@@ -49,15 +51,13 @@ public class FindKthElement {
    * Another iterative approach based on calculate the list size before to start iterating over the list to find the Kth element.
    * The complexity order in time and space terms is the same than the previous approach.
    */
-  public ListNode Find2(ListNode listNode, int k) {
-    int size = CalculateListSize(listNode);
+  public ListNode FindBycalcListSize(ListNode listNode, int k) {
+    int size = calculateListSize(listNode);
     int length = size;
     if (k > (size - 1)) throw new IndexOutOfBoundsException();
     ListNode result = listNode;
     int n = size - 1 - k;
-    // System.out.println("n=" + n);
-    while (n > 0)
-    {
+    while (n > 0) {
       result = result.getNext();
       n--;
     }
@@ -69,7 +69,7 @@ public class FindKthElement {
    * The complexity order of this algorithm is O(N) as in the previous implementations, but in space terms,
    * the complexity order is equals to O(1).
    */
-  public ListNode Find3(ListNode listNode, int k) {
+  public ListNode findByPointer(ListNode listNode, int k) {
     ListNode pointer2 = listNode;
     for (int i = 0; i <= k; i++)
     {
@@ -86,15 +86,13 @@ public class FindKthElement {
     return result;
   }
 
-  private int CalculateListSize(ListNode listNode) {
+  private int calculateListSize(ListNode listNode) {
     int size = 0;
     int length = 0;
-    while (listNode != null)
-    {
+    while (listNode != null) {
       size++;
       listNode = listNode.getNext();
     }
-    // System.out.println("size=" + size);
     return size;
   }
 }
