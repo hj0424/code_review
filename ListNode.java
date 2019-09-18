@@ -22,7 +22,7 @@
  *
  * @author Pedro Vicente Gómez Sánchez.
  */
-package project4;
+
 public class ListNode<T> {
 
   private T data;
