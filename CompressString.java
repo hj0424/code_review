@@ -22,7 +22,6 @@
  * @author Pedro Vicente Gómez Sánchez.
  */
 
-package project2;
 public class CompressString {
 
   /**
